@@ -47,6 +47,7 @@
       var ul = document.createElement('ul');
       ul.id = "friends";
         window.friends.forEach( friend => ul.innerHTML = `<li>${friend}</li>` );
+      document.body.appendChild(ul);
     }
   };
   
