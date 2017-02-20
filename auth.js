@@ -27,7 +27,7 @@
       this.JSONPBoilerplate();
       var queryFriends = `https://api.vk.com/method/friends.get?fields=true&order=random&count=${count}&v=5.52&access_token=1205819480d97eecb9123072c6d3ff63b9cac2b75cbdc6206e275a1e90e99140c937942870d37784d776b&callback=JSONPCBFriends`;
       var script = document.createElement('script');
-      script.src = query;
+      script.src = queryFriends;
       document.getElementsByTagName("head")[0].appendChild(script);
       //
       var query = `https://api.vk.com/method/users.get?user_ids=${localStorage.user_id}&&v=5.52&callback=JSONPCBClient`;
