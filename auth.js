@@ -47,7 +47,7 @@
       
       // Inject JSONP callback that extracts names and invokes render method in async fashion. 
       var callbackFriends = document.createElement('script');
-      callback.innerHTML = `function JSONPCBFriends(result) { 
+      callbackFriends.innerHTML = `function JSONPCBFriends(result) { 
         result.response.items.forEach( el => { 
           friends.push(el.first_name + " " + el.last_name);
         });
@@ -55,7 +55,7 @@
       document.head.appendChild(callbackFriends);
 
       var callbackClient = document.createElement('script');
-      callback.innerHTML = `function JSONPCBClient(result) { 
+      callbackClient.innerHTML = `function JSONPCBClient(result) { 
         result.response.items.forEach( el => { 
           friends.parent(el.first_name + " " + el.last_name);
         });
