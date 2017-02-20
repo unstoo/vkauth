@@ -27,6 +27,7 @@
   };
   
   var hash = location.hash;
+  location.hash = "";
 
   if (hash.includes("access_token") || window.localStorage.access_token) { 
     var keyValuePair = [];
