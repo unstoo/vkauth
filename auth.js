@@ -46,20 +46,22 @@
     } 
       
       // Inject JSONP callback that extracts names and invokes render method in async fashion. 
-      var callback = document.createElement('script');
+      var callbackFriends = document.createElement('script');
       callback.innerHTML = `function JSONPCBFriends(result) { 
         result.response.items.forEach( el => { 
           friends.push(el.first_name + " " + el.last_name);
         });
       }`;
-      document.head.appendChild(callback);
+      document.head.appendChild(callbackFriends);
+
+      var callbackClient = document.createElement('script');
       callback.innerHTML = `function JSONPCBClient(result) { 
         result.response.items.forEach( el => { 
           friends.parent(el.first_name + " " + el.last_name);
         });
         friends.render();
       }`;
-      document.head.appendChild(callback);
+      document.head.appendChild(callbackClient);
     }    
   };
   
