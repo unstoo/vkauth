@@ -19,16 +19,31 @@
             location = `${API}client_id=${oAuth}&scope=${scope}&redirect_uri=${redirect}&$display={display}&v=${v}&response_type=token`;
         }           
     };
-  var friends = { 
-    render: function() {
+  
+  
+  var JSONP = { 
+    getFriends: function() {
 
-    }
+      var query = `https://api.vk.com/method/friends.get?fields=true&order=random&count=5&v=5.52&access_token=1205819480d97eecb9123072c6d3ff63b9cac2b75cbdc6206e275a1e90e99140c937942870d37784d776b&callback=callbackFunc`
+      
+      var script = document.createElement('SCRIPT');
+      script.src = query;
+      document.getElementsByTagName("head")[0].appendChild(script);
+      function callbackFunc(result) {
+        console.log(result)
+      }    
+    },
   };
   
   var hash = location.hash;
   location.hash = "";
 
-  if (hash.includes("access_token") || window.localStorage.access_token) { 
+  if(window.localStorage.access_token) { 
+
+    JSONP.getFriends();
+
+  } else  if (hash.includes("access_token")) {
+
     var keyValuePair = [];
     hash = hash.slice(1, hash.length);    
     hash = hash.split('&');
@@ -36,14 +51,13 @@
     hash.forEach( value => {
         keyValuePair = value.split("=");
         window.localStorage[keyValuePair[0]] = keyValuePair[1];
-    });
-
-    console.log(window.localStorage); 
-
-    var keysOfInterest = ['access_token', 'user_id'];
+    });    
+    console.log(window.localStorage);
+    JSONP.getFriends();
 
   } else {
-    AuthButton.render();
-  } 
 
+    AuthButton.render();
+
+  } 
 }());
