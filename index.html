@@ -38,7 +38,7 @@
 
     var body = `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`;
 
-    xhr.open("POST", '/submit', true)
+    xhr.open("GET", '/submit', true)
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 
     xhr.onreadystatechange = function () {
