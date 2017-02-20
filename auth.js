@@ -44,7 +44,7 @@
       friends.render = function() {       
 
         client.innerHTML = friends.parent;      
-        friends.forEach( function(){ list.innerHTML += `<li>${friend}</li>` });
+        friends.forEach( function(friend){ list.innerHTML += `<li>${friend}</li>` });
     } 
       
       // Inject JSONP callbacks that extracts names and invokes render method in async fashion. 
