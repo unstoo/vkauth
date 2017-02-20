@@ -42,7 +42,7 @@
     },
 
     renderFriends: function() {
-      console.log('rendering...', friends);
+      console.log('rendering...', friends.length);
 
       var ul = document.createElement('ul');
       ul.id = "friends";
