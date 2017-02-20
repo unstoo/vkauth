@@ -31,18 +31,15 @@
   var hash = location.hash;
 
   if (hash.includes("access_token")) { 
-    var user = {},
-        keyValuePair = [];
+    var keyValuePair = [];
     hash = hash.slice(1, hash.length);    
     hash = hash.split('&');
     
     hash.forEach( value => {
         keyValuePair = value.split("=");
-        user[keyValuePair[0]] = keyValuePair[1];
-    });  
+        window.localStorage[keyValuePair[0]] = keyValuePair[1];
+    });
     
-    window.localStorage.vk = user;
-
     console.log(window.localStorage.vk); 
 
     var keysOfInterest = ['access_token', 'user_id'];
