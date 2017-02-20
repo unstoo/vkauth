@@ -15,16 +15,31 @@
   
   <button id="Auth_button">Auth</button>
 
-
   <script>
 
-  if(location.hash) {
-    console.log(location.hash.split("&"));
+  var hash = location.hash;
+ // access_token=c362a81b7b6694acdb6bf6de2f5d8162734aed3109e7fdfd75a508fb44254039e4f300cf7aede31a2e38a
+//  expires_in=86400
+//  user_id=165240997
+  if(hash) {
+    
+    var user = {};
+    hash = hash.slice(1, hash.length);    
+    hash = hash.split('&');
+
+    let key_value = [];
+    keysOfInterest.forEach((value, i) => {
+        key_value = value.split("=");
+        user[key_value[0]] = key_value[1];
+    });    
+
+    console.log(user);
+    var keysOfInterest = ['access_token', 'user_id'];
+    
   }
-
-
+  
+  
   var button = document.getElementById("Auth_button");
-
   button.addEventListener("click", authHandler);
 
   function authHandler(e) {
