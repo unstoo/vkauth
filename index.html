@@ -25,7 +25,7 @@
     hash = hash.split('&');
 
     let key_value = [];
-    keysOfInterest.forEach((value, i) => {
+    hash.forEach((value, i) => {
         key_value = value.split("=");
         user[key_value[0]] = key_value[1];
     });    
