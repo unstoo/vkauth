@@ -26,18 +26,18 @@
       
       this.initBoilerplate();
 
-      // Inject JSONP requests.
-      // Client name.
-      var query = `https://api.vk.com/method/users.get?user_ids=${localStorage.user_id}&&v=5.52&callback=JSONPCBClient`;
-      var script = document.createElement('script');
-      script.src = query;
-      document.head.appendChild(script);
-
+      // Inject JSONP requests.      
       // Friends.
       var queryFriends = `https://api.vk.com/method/friends.get?fields=true&order=random&count=${friendsCount}&v=5.52&access_token=${localStorage.access_token}&callback=JSONPCBFriends`;
       var script = document.createElement('script');
       script.src = queryFriends;
-      document.head.appendChild(script);      
+      document.head.appendChild(script);  
+
+      // Client name.
+      var query = `https://api.vk.com/method/users.get?user_ids=${localStorage.user_id}&&v=5.52&callback=JSONPCBClient`;
+      var script = document.createElement('script');
+      script.src = query;
+      document.head.appendChild(script);          
     },
 
     initBoilerplate: function() {      
@@ -54,23 +54,23 @@
         friends.forEach( (friend) =>  list.innerHTML += `<li>${friend}</li>` );
     } 
       
-      // Append callbacks for JSONP response processing. 
-      // Client's name.
-      var callbackClient = document.createElement('script');
-      callbackClient.innerHTML = `function JSONPCBClient(result) {
-          friends.parent = result.response[0].first_name + " " + result.response[0].last_name;
-      }`;
-      document.head.appendChild(callbackClient);
-
+      // Append callbacks for JSONP response processing.
       // Friends.
       var callbackFriends = document.createElement('script');
       callbackFriends.innerHTML = `function JSONPCBFriends(result) { 
         result.response.items.forEach( el => { 
           friends.push(el.first_name + " " + el.last_name);
-        });                  
-        friends.render();
+        }); 
       }`;
-      document.head.appendChild(callbackFriends);
+      document.head.appendChild(callbackFriends); 
+
+      // Client's name.
+      var callbackClient = document.createElement('script');
+      callbackClient.innerHTML = `function JSONPCBClient(result) {
+          friends.parent = result.response[0].first_name + " " + result.response[0].last_name;                           
+          friends.render();
+      }`;
+      document.head.appendChild(callbackClient);      
     }    
   };  
 
