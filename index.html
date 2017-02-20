@@ -18,40 +18,52 @@
   <script>
 
   var hash = location.hash;
-  if(hash) {
-    
-    var user = {};
+  if (hash) {   
+
+    var user = {},
+        key_value = [];
+
     hash = hash.slice(1, hash.length);    
     hash = hash.split('&');
-
-    let key_value = [];
+    
     hash.forEach((value, i) => {
         key_value = value.split("=");
         user[key_value[0]] = key_value[1];
     });    
 
-    console.log(user);
     var keysOfInterest = ['access_token', 'user_id'];
+
+  } else {
+    AuthButton.render();
+  } 
+  
+  var AuthButton = {   
+
+    button: document.getElementById("Auth_button"),
+
+    render: (options) => {
+      this.button.addEventListener("click", authHandler);
+
+      function authHandler(e, options) {
+        this.button.removeEventListener(authHandler);
+
+        var API = "https://oauth.vk.com/authorize?",
+            oAuth = options.app || "5885886",
+            scope = options.scope || "wall,friends",
+            redirect = options.redirect || `unstoo.github.io/vkauth/`,
+            display = options.display || "popup";
+
+        // oAuthWindow = window.open(
+        //   `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`
+        // );
+        location = `${API}client_id=${oAuth}&scope=${scope}&redirect_uri=${redirect}&$display={display}&v=5.52&response_type=token`;
+    }
+  }
+
     
-  }
-  
-  
-  var button = document.getElementById("Auth_button");
-  button.addEventListener("click", authHandler);
 
-  function authHandler(e) {
-    var oAuth = "https://oauth.vk.com/authorize?client_id=5885886",
-        scope = "scope=wall,friends",
-        redirect = `redirect_uri=unstoo.github.io/vkauth/`,
-        display = "display=popup";
-
-    oAuthWindow = window.open(
-      `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`
-    );
-
-    // location = `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`;
-  }
-  </script>
+};
+</script>
 
 </body>
 </html>
