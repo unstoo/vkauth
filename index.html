@@ -12,58 +12,8 @@
   }
 </style>
 <body>
-  
-  <button id="Auth_button">Auth</button>
 
-  <script>
-
-  var hash = location.hash;
-  if (hash) {   
-
-    var user = {},
-        key_value = [];
-
-    hash = hash.slice(1, hash.length);    
-    hash = hash.split('&');
-    
-    hash.forEach((value, i) => {
-        key_value = value.split("=");
-        user[key_value[0]] = key_value[1];
-    });    
-
-    var keysOfInterest = ['access_token', 'user_id'];
-
-  } else {
-    AuthButton.render();
-  } 
-  
-  var AuthButton = {   
-
-    button: document.getElementById("Auth_button"),
-
-    render: (options) => {
-      this.button.addEventListener("click", authHandler);
-
-      function authHandler(e, options) {
-        this.button.removeEventListener(authHandler);
-
-        var API = "https://oauth.vk.com/authorize?",
-            oAuth = options.app || "5885886",
-            scope = options.scope || "wall,friends",
-            redirect = options.redirect || `unstoo.github.io/vkauth/`,
-            display = options.display || "popup";
-
-        // oAuthWindow = window.open(
-        //   `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`
-        // );
-        location = `${API}client_id=${oAuth}&scope=${scope}&redirect_uri=${redirect}&$display={display}&v=5.52&response_type=token`;
-    }
-  }
-
-    
-
-};
-</script>
+  <script src="auth.js"></script>
 
 </body>
 </html>
