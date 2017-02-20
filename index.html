@@ -27,30 +27,11 @@
         redirect = `redirect_uri=unstoo.github.io/vkauth/`,
         display = "display=popup";
 
-    window.addEventListener("hashchange", funcRef, false);
-    var funcRef = (e) => { console.log(e) };
-
     // oAuthWindow = window.open(
     //   `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`
     // );
 
-    var xhr = new XMLHttpRequest();
-
-    var body = `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`;
-
-    xhr.open("GET", '/submit', true)
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-
-    xhr.onreadystatechange = function () {
-      if (this.readyState != 4) return;
-      alert( this.responseText );
-    };
-
-    
-
-    xhr.send(body);
-    
-     
+    location = `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`;
   }
   </script>
 
