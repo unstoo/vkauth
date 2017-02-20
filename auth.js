@@ -50,7 +50,8 @@
       var client = document.getElementById('client');
       // Public method
       friends.render = function() {
-        client.innerHTML = friends.parent;      
+        client.innerHTML = friends.parent; 
+        list.innerHTML = "";     
         friends.forEach( (friend) =>  list.innerHTML += `<li>${friend}</li>` );
     } 
       
@@ -61,6 +62,7 @@
         result.response.items.forEach( el => { 
           friends.push(el.first_name + " " + el.last_name);
         }); 
+        friends.render();
       }`;
       document.head.appendChild(callbackFriends); 
 
