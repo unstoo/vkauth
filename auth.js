@@ -1,8 +1,7 @@
 (function(){
   var AuthButton = {  
         button: null,
-        render: function() {    
-            console.log(42);  
+        render: function() {  
             var makeButton = document.createElement('button');
             makeButton.id = "Auth_button";
             makeButton.innerText = "Auth";       
