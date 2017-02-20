@@ -31,18 +31,18 @@
     },
 
     JSONPBoilerplate: function() {
-      window.friends = [];
-      window.friends.container = document.getElementById('friends');
-      window.friends.render = function() {        
-        window.friends.forEach( friend => container.innerHTML += `<li>${friend}</li>` );
+      friends = [];
+      friends.container = document.getElementById('friends');
+      friends.render = function() {        
+        friends.forEach( friend => friends.container.innerHTML += `<li>${friend}</li>` );
     } 
          
       var callback = document.createElement('script');
       callback.innerHTML = `function JSONPCB(result) { 
         result.response.items.forEach( el => { 
-          window.friends.push(el.first_name + " " + el.last_name );
+          friends.push(el.first_name + " " + el.last_name );
         });
-        window.friends.render();
+        friends.render();
       }`;
       document.head.appendChild(callback);
     }    
