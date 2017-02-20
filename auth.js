@@ -42,6 +42,8 @@
     },
 
     renderFriends: function() {
+      console.log('rendering...', friends);
+
       var ul = document.createElement('ul');
       ul.id = "friends";
         window.friends.forEach( friend => ul.innerHTML = `<li>${friend}</li>` );
