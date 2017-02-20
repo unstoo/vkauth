@@ -1,55 +1,55 @@
 (function(){
+  var AuthButton = {  
+        button: null,
+        render: function() {    
+            console.log(42);  
+            var makeButton = document.createElement('button');
+            makeButton.id = "Auth_button";
+            makeButton.innerText = "Auth";       
+            makeButton.addEventListener("click", this.handler); 
+            this.button = makeButton;  
+            document.body.appendChild(this.button);  
+        },
+        handler: function() {
+            var API = "https://oauth.vk.com/authorize?",
+                oAuth =  "5885886",
+                scope = "wall,friends",
+                redirect = "unstoo.github.io/vkauth/",
+                display = "popup",
+                v = "5.52";   
+            location = `${API}client_id=${oAuth}&scope=${scope}&redirect_uri=${redirect}&$display={display}&v=${v}&response_type=token`;
+        }           
+    };
+  var friends = { 
+    render: function() {
 
-var hash = location.hash,
-    AuthButton = {  
-
-    button: null,
-
-    render: function (options) {
-      if (!this.button) {
-        var makeButton = document.createElement('button');
-        makeButton.id = "Auth_button";
-        makeButton.innerText = "Auth";       
-        this.button = makeButton; 
-        this.button.addEventListener("click", this.handler); 
-        document.body.appendChild(makeButton);
-      }      
-    },
-    handler: (e) => {
-        console.log(this);
-        var options = {};
-        var API = "https://oauth.vk.com/authorize?",
-            oAuth = options.app || "5885886",
-            scope = options.scope || "wall,friends",
-            redirect = options.redirect || `unstoo.github.io/vkauth/`,
-            display = options.display || "popup";
-
-        // oAuthWindow = window.open(
-        //   `${oAuth}&${scope}&${redirect}&${display}&v=5.52&response_type=token`
-        // );
-        location = `${API}client_id=${oAuth}&scope=${scope}&redirect_uri=${redirect}&$display={display}&v=5.52&response_type=token`;
-    } ,
-    removeHandler: () => {        
-        this.button.removeEventListener("click", this.handler);
     }
-};
+  };
 
-if (hash) { 
-  var user = {},
-      key_value = [];
 
-  hash = hash.slice(1, hash.length);    
-  hash = hash.split('&');
   
-  hash.forEach((value, i) => {
-      key_value = value.split("=");
-      user[key_value[0]] = key_value[1];
-  });   
+  var hash = location.hash;
 
-  var keysOfInterest = ['access_token', 'user_id'];
+  if (hash.includes("access_token")) { 
+    var user = {},
+        keyValuePair = [];
+    location.hash = "";
+    hash = hash.slice(1, hash.length);    
+    hash = hash.split('&');
+    
+    hash.forEach( value => {
+        keyValuePair = value.split("=");
+        user[keyValuePair[0]] = keyValuePair[1];
+    });  
+    
+    window.localStorage = user;
 
-} else {
-  AuthButton.render();
-} 
+    console.log(window.localStorage); 
 
-}()); // IIFE
+    var keysOfInterest = ['access_token', 'user_id'];
+
+  } else {
+    AuthButton.render();
+  } 
+
+}());
