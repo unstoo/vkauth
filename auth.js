@@ -39,10 +39,12 @@
 
     JSONPBoilerplate: function() {
       friends = [];
-      friends.container = document.getElementById('friends');
-      friends.render = function() {        
-        friends.forEach( friend => friends.container.innerHTML += `<li>${friend}</li>` );
-        friends.container.parentElement.innerHTML = friends.parent;
+      var list = document.getElementById('friends');
+      var client = document.getElementById('client');
+      friends.render = function() {       
+
+        client.innerHTML = friends.parent;      
+        friends.forEach( function(){ list.innerHTML += `<li>${friend}</li>` });
     } 
       
       // Inject JSONP callbacks that extracts names and invokes render method in async fashion. 
