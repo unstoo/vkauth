@@ -25,12 +25,10 @@
 
     }
   };
-
-
   
   var hash = location.hash;
 
-  if (hash.includes("access_token")) { 
+  if (hash.includes("access_token") || window.localStorage.access_token) { 
     var keyValuePair = [];
     hash = hash.slice(1, hash.length);    
     hash = hash.split('&');
@@ -39,8 +37,8 @@
         keyValuePair = value.split("=");
         window.localStorage[keyValuePair[0]] = keyValuePair[1];
     });
-    
-    console.log(window.localStorage.vk); 
+
+    console.log(window.localStorage); 
 
     var keysOfInterest = ['access_token', 'user_id'];
 
