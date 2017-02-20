@@ -55,8 +55,9 @@
       document.head.appendChild(callbackFriends);
 
       var callbackClient = document.createElement('script');
-      callbackClient.innerHTML = `function JSONPCBClient(result) { 
-          friends.parent = result.first_name + " " + result.last_name;
+      callbackClient.innerHTML = `function JSONPCBClient(result) {
+          console.log(result.response);
+          friends.parent = result.response.first_name + " " + result.response.last_name;
           friends.render();
       }`;
       document.head.appendChild(callbackClient);
