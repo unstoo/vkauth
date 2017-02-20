@@ -46,9 +46,14 @@
 
       var ul = document.createElement('ul');
       ul.id = "friends";
-        window.friends.forEach( friend => ul.innerHTML = `<li>${friend}</li>` );
+      window.friends.forEach( friend => { 
+        ul.innerHTML = `<li>${friend}</li>`;
+        console.log(friend); 
+      });
+      
       document.body.appendChild(ul);
     }
+    
   };
   
   var hash = location.hash;
