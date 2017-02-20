@@ -33,7 +33,6 @@
   if (hash.includes("access_token")) { 
     var user = {},
         keyValuePair = [];
-    location.hash = "";
     hash = hash.slice(1, hash.length);    
     hash = hash.split('&');
     
@@ -42,9 +41,9 @@
         user[keyValuePair[0]] = keyValuePair[1];
     });  
     
-    window.localStorage = user;
+    window.localStorage.vk = user;
 
-    console.log(window.localStorage); 
+    console.log(window.localStorage.vk); 
 
     var keysOfInterest = ['access_token', 'user_id'];
 
