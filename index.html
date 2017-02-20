@@ -17,6 +17,12 @@
 
 
   <script>
+
+  if(location.hash) {
+    console.log(location.hash.split("&"));
+  }
+
+
   var button = document.getElementById("Auth_button");
 
   button.addEventListener("click", authHandler);
