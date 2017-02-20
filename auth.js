@@ -1,7 +1,4 @@
 (function(){
-  function JSONPcb(result) {
-          console.log(result)
-      }
 
   var AuthButton = {  
         button: null,
@@ -27,8 +24,12 @@
   
   var JSONP = { 
     getFriends: function() {
-      var query = `https://api.vk.com/method/friends.get?fields=true&order=random&count=5&v=5.52&access_token=1205819480d97eecb9123072c6d3ff63b9cac2b75cbdc6206e275a1e90e99140c937942870d37784d776b&callback=JSONPcb`
-      var script = document.createElement('SCRIPT');
+      var cb = document.createElement('script');
+      cb.innerHTML = `function jsonpCb(result) { console.log(result) }`;
+      document.head.appendChild(cb);
+
+      var query = `https://api.vk.com/method/friends.get?fields=true&order=random&count=5&v=5.52&access_token=1205819480d97eecb9123072c6d3ff63b9cac2b75cbdc6206e275a1e90e99140c937942870d37784d776b&callback=jsonpCb`
+      var script = document.createElement('script');
       script.src = query;
       document.getElementsByTagName("head")[0].appendChild(script);            
     },
