@@ -4,7 +4,7 @@
         render: function() {  
             var button = document.createElement('button');
             button.id = "Auth_button";
-            button.innerText = "Auth";       
+            button.innerText = "авторизоваться";       
             button.addEventListener("click", this.handler);   
             document.body.appendChild(button);  
         },
