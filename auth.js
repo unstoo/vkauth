@@ -25,14 +25,15 @@
     getFriends: function(friendsCount) {
       
       this.initBoilerplate();
-      
-      // Get client name
+
+      // Inject JSONP requests.
+      // Client name.
       var query = `https://api.vk.com/method/users.get?user_ids=${localStorage.user_id}&&v=5.52&callback=JSONPCBClient`;
       var script = document.createElement('script');
       script.src = query;
       document.head.appendChild(script);
 
-      // Get friends
+      // Friends.
       var queryFriends = `https://api.vk.com/method/friends.get?fields=true&order=random&count=${friendsCount}&v=5.52&access_token=1205819480d97eecb9123072c6d3ff63b9cac2b75cbdc6206e275a1e90e99140c937942870d37784d776b&callback=JSONPCBFriends`;
       var script = document.createElement('script');
       script.src = queryFriends;
@@ -54,8 +55,8 @@
         friends.forEach( (friend) =>  list.innerHTML += `<li>${friend}</li>` );
     } 
       
-      // Inject JSONP callbacks that extracts names and invokes render method in async fashion. 
-      // Details of a client.
+      // Append callbacks for JSONP response processing. 
+      // Client name.
       var callbackClient = document.createElement('script');
       callbackClient.innerHTML = `function JSONPCBClient(result) {
           friends.parent = result.response[0].first_name + " " + result.response[0].last_name;
